@@ -1,0 +1,44 @@
+.play {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30%;
+    margin-bottom: 2%;
+}
+
+.play-button {
+    border-radius: 5%;
+    border-style: solid;
+    border-color: #526d8f;
+    border-width: 2px;
+    height: 7vw;
+    width: 15vw;
+    background-color: #4C9787;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    color: #526d8f;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-left: 40.5%;
+    margin-right: 40.5%;
+}
+
+body {
+    background-color: rgb(54, 52, 52);
+}
+
+.settings-header {
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-settings {
+    margin-left: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
