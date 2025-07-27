@@ -14,20 +14,18 @@
             <h2 class="question"><%= questionPrompt %></h2>
         </div>
 
-        <div>
+        <div class="score">
           <h3>Score: <%= score %>/<%= totalQuestions %></h3>
         </div>
 
-        <form id="choices" action="/questions/answer" method="post">
-            <button id="A" name="answer" value="A"><%= choiceA %></label>
-            <button id="B" name="answer" value="B"><%= choiceB %></label>
-            <button id="C" name="answer" value="C"><%= choiceC %></label>
-            <button id="D" name="answer" value="D"><%= choiceD %></label>
-        </div>
-
-        <div class="next-button">
-            <button id="next-button">Next</button>
+        <form class="choices" id="choices" action="/questions/answer" method="post">
+            <button class="choice" id="A" name="answer" value="A"><%= choiceA %></label>
+            <button class="choice" id="B" name="answer" value="B"><%= choiceB %></label>
+            <button class="choice" id="C" name="answer" value="C"><%= choiceC %></label>
+            <button class="choice" id="D" name="answer" value="D"><%= choiceD %></label>
         </div>
     </main>
+
+    <script src="./javascripts/questionsScript.js"></script>
   </body> 
 </html>

@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
     questionNumber: questionNumber,
     totalQuestions: totalQuestions,
     questionPrompt: question.question,
+    answer: question.answer,
     choiceA: question.A,
     choiceB: question.B,
     choiceC: question.C,
