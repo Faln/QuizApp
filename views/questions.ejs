@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Question <%= questionNumber %></title>
+    <link rel='stylesheet' href='/stylesheets/questionsStyle.css' />
+  </head>
+  <body>
+    <header>
+
+    </header>
+
+    <main>
+        <div>
+            <h2 class="question"><%= questionPrompt %></h2>
+        </div>
+
+        <div>
+          <h3>Score: <%= score %>/<%= totalQuestions %></h3>
+        </div>
+
+        <form id="choices" action="/questions/answer" method="post">
+            <button id="A" name="answer" value="A"><%= choiceA %></label>
+            <button id="B" name="answer" value="B"><%= choiceB %></label>
+            <button id="C" name="answer" value="C"><%= choiceC %></label>
+            <button id="D" name="answer" value="D"><%= choiceD %></label>
+        </div>
+
+        <div class="next-button">
+            <button id="next-button">Next</button>
+        </div>
+    </main>
+  </body> 
+</html>
