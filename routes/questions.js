@@ -8,6 +8,7 @@ let cachedQuestions = [];
 let selectedQuestions = [];
 let questionNumber = 0;
 let score = 0;
+let history = [];
 
 fs.readFile('questions.json', (error, data) => {
   if (error) throw error;
@@ -23,7 +24,7 @@ router.get('/', function(req, res, next) {
   const question = selectedQuestions[questionNumber];
 
   const info = {
-    questionNumber: questionNumber,
+    questionNumber: questionNumber + 1,
     totalQuestions: totalQuestions,
     questionPrompt: question.question,
     answer: question.answer,
@@ -39,18 +40,27 @@ router.get('/', function(req, res, next) {
 
 router.post('/answer', (req, res) => {
   const selected = req.body.answer;
+  const q = selectedQuestions[questionNumber];
+  const correct = selected === q.answer;
 
-  if (selected === selectedQuestions[questionNumber].answer) {
+  if (correct) {
     score++;
   }
+
+  const prompt = q.question;
+  const answer = matchAnswer(q, q.answer);
+  const yourAnswer = matchAnswer(q, selected);
+
+  history[questionNumber] = {prompt, answer, yourAnswer};
 
   questionNumber++;
 
   if (questionNumber >= selectedQuestions.length) {
-    res.redirect(`/results?score=${score}&totalQuestions=${totalQuestions}`);
+    res.redirect(`/results?score=${score}&totalQuestions=${totalQuestions}&history=${JSON.stringify(history)}`);
     questionNumber = 0;
     score = 0;
     selectedQuestions = [];
+    history = []
   } else {
     res.redirect('/questions');
   }
@@ -64,6 +74,16 @@ function selectQuestions(amount) {
   }
 
   selectedQuestions = Array.from(set);
+}
+
+function matchAnswer(question, string) {
+  switch(string) {
+    case "A": return question.A;
+    case "B": return question.B;
+    case "C": return question.C;
+    case "D": return question.D;
+    default: return null;
+  }
 }
 
 module.exports = router;

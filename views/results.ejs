@@ -10,15 +10,25 @@
     </header>
 
     <main>
-        <div>
-          <h3>Score: <%= score %> / <%= totalQuestions %></h3>
-        </div>
+      <div>
+        <h3>Score: <%= score %> / <%= totalQuestions %></h3>
+      </div>
 
-        <div class="retry">
-            <a href="/">
-                <button>Retry</button>
-            </a>
-        </div>
+      <div class="history">
+        <% history.forEach((e, index) => { %>
+           <div class="question-review">
+            <p><strong><%= index + 1%>: <%= e.prompt %></strong></p>
+            <p>Your Answer: <%= e.yourAnswer %></p>
+            <p>Correct Answer: <%= e.answer %></p>
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="retry">
+          <a href="/">
+              <button>Retry</button>
+          </a>
+      </div>
     </main>
   </body> 
 </html>
