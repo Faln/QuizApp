@@ -1,0 +1,87 @@
+body {
+  background-image: url('/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgb(249, 235, 255);
+  padding: 2% 3%;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.signin_form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form_header {
+  margin-bottom: 1.5rem;
+}
+
+.form_header h1 {
+  margin: 0;
+  color: #712794;
+}
+
+.form_header p {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  text-align: left;
+  color: #4b3c51;
+}
+
+input[type="email"],
+input[type="password"] {
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #bf94d3;
+  outline: none;
+}
+
+input[type="submit"] {
+  background-color: #bf94d3;
+  color: #3b3b3b;
+  font-size: 1.2rem;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #af7ecf;
+  border: 1px solid black;
+  transform: translateY(-1px);
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}

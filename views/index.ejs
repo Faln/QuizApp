@@ -5,22 +5,39 @@
     <link rel='stylesheet' href='./stylesheets/indexStyle.css' />
   </head>
   <body>
-    <main>
-      <form action="/questions" method="get">
-        <input type="submit" value="Start Quiz">
-        
-        <div class="amount">
-          <div>
-            <label class="amount-text" for="amount">Amount of Questions:</label>
-          </div>
+    <header class="<%= loggedIn ? 'header-loggedin' : 'header-guest' %>">
+      <% if (loggedIn) { %>
+        <h1>Welcome back, <%= name %>!</h1>
+      <% } else { %>
+        <h1>Welcome Guest!</h1>
+        <a href="/signin">Sign In</a> | <a href="/signup">Sign up</a>
+      <% } %>
+    </header>
 
-          <div class="amount-slider">
-            <div class="amount-min">1</div>
-            <input name="amount" type="range" min="1" max="20" value="10" class="slider" id="slider">
-            <span id="slider-value">10</span>
+    <main>
+      <div>
+        <form action="/questions" method="get">
+          <input type="submit" value="Start Quiz">
+
+          <% if (loggedIn) { %>
+            <input type="hidden" name="name" value="<%= name %>">
+            <input type="hidden" name="email" value="<%= email %>">
+            <input type="hidden" name="loggedIn" value="<%= loggedIn %>">
+          <% } %>
+
+          <div class="amount">
+            <div>
+              <label class="amount-text" for="amount">Amount of Questions:</label>
+            </div>
+
+            <div class="amount-slider">
+              <div class="amount-min">1</div>
+              <input name="amount" type="range" min="1" max="20" value="10" class="slider" id="slider">
+              <span id="slider-value">10</span>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </main>
     <script src="./javascripts/indexScript.js"></script>
   </body> 

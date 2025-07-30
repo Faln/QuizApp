@@ -25,9 +25,18 @@
       </div>
 
       <div class="retry">
-          <a href="/">
+          <a href="/?name=<%= name %>&email=<%= email %>&loggedIn=<%= loggedIn %>">
               <button>Retry</button>
           </a>
+      </div>
+
+      <div class="leaderboard">
+        <h1>Top 10 Players</h1>
+        <ol>
+          <% leaderboard.forEach(player => { %>
+            <li><%= player.name %> - <%= player.overallScore %> points</li>
+          <% }) %>
+        </ol>
       </div>
     </main>
   </body> 

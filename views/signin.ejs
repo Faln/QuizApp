@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./stylesheets/signinStyle.css">
+    </head>
+    <body>
+        <div class="container">
+            <form method="POST" action="/signin/submit" class="signin_form">
+                <div class="form_header">
+                    <h1>Sign In</h1>
+                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+                </div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password">
+                <% if (hasError) { %>
+                    <h5 class="error" id="error"><%= message %></h5>
+                <% } %>
+                <input type="submit" value="Sign In">
+            </form>         
+        </div>
+
+        <script src="../public/javascripts/signinScript.js"></script>
+    </body>
+</html>

@@ -7,7 +7,7 @@
   <body>
     <main>
         <div>
-            <h2 class="question"><%= questionPrompt %></h2>
+          <h2 class="question"><%= questionPrompt %></h2>
         </div>
 
         <div class="score">
@@ -15,6 +15,12 @@
         </div>
 
         <form class="choices" id="choices" action="/questions/answer" method="post">
+            <% if (loggedIn) { %>
+              <input type="hidden" name="name" value="<%= name %>">
+              <input type="hidden" name="email" value="<%= email %>">
+              <input type="hidden" name="loggedIn" value="<%= loggedIn %>">
+            <% } %>
+
             <button class="choice" id="A" name="answer" value="A"><%= choiceA %></label>
             <button class="choice" id="B" name="answer" value="B"><%= choiceB %></label>
             <button class="choice" id="C" name="answer" value="C"><%= choiceC %></label>

@@ -2,6 +2,7 @@ const { log } = require('console');
 const express = require('express');
 const fs = require("fs");
 const router = express.Router();
+const { getCollection } = require('../models/db');
 
 let totalQuestions = 10;
 let cachedQuestions = [];
@@ -16,14 +17,20 @@ fs.readFile('questions.json', (error, data) => {
 });
 
 router.get('/', function(req, res, next) {
+  const { name, email, loggedIn, amount } = req.query;
+
   if (selectedQuestions.length === 0) {
-    totalQuestions = req.query.amount;
+    totalQuestions = amount;
     selectQuestions(totalQuestions);
   }
 
   const question = selectedQuestions[questionNumber];
 
   const info = {
+    name: name,
+    email: email,
+    amount: amount,
+    loggedIn: loggedIn,
     questionNumber: questionNumber + 1,
     totalQuestions: totalQuestions,
     questionPrompt: question.question,
@@ -38,8 +45,12 @@ router.get('/', function(req, res, next) {
   res.render('questions', info);
 });
 
-router.post('/answer', (req, res) => {
-  const selected = req.body.answer;
+
+router.post('/answer', function(req, res, next) {
+
+  const {name, email, loggedIn, answer} = req.body;
+
+  const selected = answer;
   const q = selectedQuestions[questionNumber];
   const correct = selected === q.answer;
 
@@ -48,21 +59,21 @@ router.post('/answer', (req, res) => {
   }
 
   const prompt = q.question;
-  const answer = matchAnswer(q, q.answer);
+  const correctAnswer = matchAnswer(q, q.answer);
   const yourAnswer = matchAnswer(q, selected);
 
-  history[questionNumber] = {prompt, answer, yourAnswer};
+  history[questionNumber] = {prompt, correctAnswer, yourAnswer};
 
   questionNumber++;
 
   if (questionNumber >= selectedQuestions.length) {
-    res.redirect(`/results?score=${score}&totalQuestions=${totalQuestions}&history=${JSON.stringify(history)}`);
+    res.redirect(`/results?name=${name}&email=${email}&loggedIn=${loggedIn}&score=${score}&totalQuestions=${totalQuestions}&history=${JSON.stringify(history)}`);
     questionNumber = 0;
     score = 0;
     selectedQuestions = [];
     history = []
   } else {
-    res.redirect('/questions');
+    res.redirect(`/questions?name=${name}&email=${email}&loggedIn=${loggedIn}&amount=${totalQuestions}`);
   }
 });
 
