@@ -106,3 +106,26 @@ a {
   font-size: 1.8rem;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.category {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  color: black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#category {
+  width: 100%;
+  padding: 2%;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f5e9ff;
+  color: #3b3b3b;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
