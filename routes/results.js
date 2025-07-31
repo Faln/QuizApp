@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
   const { name, email, loggedIn, score, totalQuestions, history } = req.query;
 
   const numericScore = parseInt(score);
-  const historyArray = JSON.parse(history || '[]');
+  const historyArray = JSON.parse(decodeURIComponent(history || '[]'));
   const isGuest = !loggedIn || loggedIn === 'false' || !email;
 
   const users = getCollection("quizUsers");
